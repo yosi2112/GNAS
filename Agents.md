@@ -1,10 +1,16 @@
-# GNAシステム (Git-Native Autonomous System) — AGENTS.md
+# GNAS 1.1 (Git-Native Autonomous System) — AGENTS.md
 
 ## コーディングエージェント向け Gitネイティブ自律開発・実行管理プロトコル
 
-本リポジトリでは、コーディングエージェントが複数セッションにまたがる長期的なソフトウェア開発を、安全・自律的かつ再現可能に進めるため、**GNAシステム（Git-Native Autonomous System）**を採用する。
+本リポジトリでは、コーディングエージェントが複数セッションにまたがる長期的なソフトウェア開発を、安全・自律的かつ再現可能に進めるため、**GNAS（Git-Native Autonomous System） 1.1**を採用する。
 
 外部SaaS（GitHub Issues / Projects等）のAPIや複雑な外部同期に依存せず、**リポジトリ内のローカルファイルおよびGitプリミティブ（Branch / Worktree / Commit / Stash）のみを基盤として動作**する。
+
+### Version
+- Protocol Version: **1.1**
+- Full profile: `Agents.md`
+- Simplified profile: `GNAS-lite.md`
+- 1.1の主な追加点: ビルド失敗時の診断・解決策提示、`resume/` による中断復帰、ユーザー所有ビルド設定MDの読み取り専用対応、GNAS-lite。
 
 ---
 
@@ -263,3 +269,15 @@ Phaseが完了条件を満たせなかった場合、または作業時間枠を
 5. **履歴改変の禁止**
    - 過去のQ書アーカイブ（`plan/history/`）や、実行済みP書の元の意図を上書きしてはならない。計画書は予言ではなく、その時点での理解の記録である。
 
+
+
+---
+
+## 8. GNAS 1.1 変更概要
+
+- GNASのプロトコルバージョンを **1.1** とした。
+- ビルド失敗時に、原因を分類し、根拠付きの解決策または次の確認手順を提示する規則を追加した。
+- `resume/` を追加し、途中停止、セッション切断、APIレート制限から再開できるチェックポイント方式を定義した。
+- ユーザーが用意する `build-tools.md` をビルド環境の優先資料として扱い、原則読み取り専用とした。
+- 軽量運用向けに `GNAS-lite.md` を追加した。
+- 導入・ファイル構成・Full/Liteの使い分けを `README.md` に集約した。
